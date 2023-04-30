@@ -25,3 +25,4 @@ public class ETFDataFactory {
         return new ETFData(line);
     }
 }
+
