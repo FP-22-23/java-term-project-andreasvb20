@@ -2,6 +2,7 @@ package types;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +11,14 @@ import java.util.Objects;
 public class ETFData implements Comparable <ETFData>{
 
     //variables
-    private LocalDate date;
+    private LocalDate date; 
     private double open;
     private double high;
     private double low;
     private double close;
     private double adjClose;
     private long   volume;
+    private Month month;
 
     // variable of type enum
     private WeekDay weekDay;
@@ -29,7 +31,7 @@ public class ETFData implements Comparable <ETFData>{
     // more variables for traders in an auxiliary type
     private TechnicalIndicators indicators;
     
-    // List
+    // List for newsHeadlines
     private List<String> newsHeadlines;
 
     //constructors
@@ -41,6 +43,7 @@ public class ETFData implements Comparable <ETFData>{
         this.close = close;
         this.adjClose = adjClose;
         this.volume = volume;
+        this.month = date.getMonth();
         this.newsHeadlines = new ArrayList<String>();
         this.weekDay = calculateWeekday(date);
 
@@ -72,6 +75,7 @@ public class ETFData implements Comparable <ETFData>{
         this.close = close;
         this.adjClose = adjClose;
         this.volume = volume;
+        this.month = date.getMonth();
         this.newsHeadlines = new ArrayList<String>();
         this.weekDay = calculateWeekday(date);
 
@@ -86,7 +90,7 @@ public class ETFData implements Comparable <ETFData>{
         this.indicators = new TechnicalIndicators(iPchange, vola);
     }
 
-    //set- and get- methods  
+    //set- and get- methods for all attributes
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -107,6 +111,9 @@ public class ETFData implements Comparable <ETFData>{
     }
     public void setVolume(long volume) {
         this.volume = volume;
+    }
+    public void setMonth(Month month) {
+        this.month = month;
     }
     public void setWeekDay(WeekDay weekDay) {
         this.weekDay = weekDay;
@@ -151,6 +158,9 @@ public class ETFData implements Comparable <ETFData>{
     public long getVolume() {
         return volume;
     }
+    public Month getMonth() {
+        return month;
+    }
     public WeekDay getWeekDay() {
         return weekDay;
     }
@@ -170,11 +180,12 @@ public class ETFData implements Comparable <ETFData>{
         return newsHeadlines;
     }
     
+    //info method
     @Override
     public String toString() {
-        return "ETFData [date=" + date + ", open=" + open + ", high=" + high + ", low=" + low + ", close=" + close
-                + ", adjClose=" + adjClose + ", volume=" + volume + ", weekDay=" + weekDay + ", dailyChange="
-                + dailyChange + ", dailyRange=" + dailyRange + ", uptrend=" + uptrend + ", indicators=" + indicators
+        return "ETFData [date=" +date + ", open=" + open + ", high=" + high + ", low=" + low + ", close=" + close
+                + ", adjClose=" + adjClose +", volume=" + volume + ", month="+month+", weekDay=" + weekDay + ", dailyChange="
+                + dailyChange + ", dailyRange=" +dailyRange + ", uptrend=" +uptrend + ", indicators=" + indicators
                 + "]";
     }
     // helper method for constructor
@@ -226,4 +237,6 @@ public class ETFData implements Comparable <ETFData>{
     
 
 }
+
+
 
