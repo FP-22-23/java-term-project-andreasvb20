@@ -14,10 +14,10 @@ public class TechnicalIndicators {
         this.volatility = volatility;
     }
     public double getIntradayPercentageChange() {
-        return intradayPercentageChange;
+        return Math.round(intradayPercentageChange * 1e4) / 1e4;
     }
     public double getVolatility() {
-        return volatility;
+        return Math.round(volatility * 1e5) / 1e5; // round 5 digits after decimal point so its not too long
     }
     //constructors
     public TechnicalIndicators(double intradayPercentageChange, double volatility) {
@@ -26,10 +26,11 @@ public class TechnicalIndicators {
     }
     @Override
     public String toString() {
-        return "TechnicalIndicators [intradayPercentageChange=" + intradayPercentageChange + ", volatility="
-                + volatility + "]";
+        return "TechnicalIndicators [intradayPercentageChange=" + (Math.round(intradayPercentageChange * 1e4) / 1e4) + ", volatility="
+                + (Math.round(volatility * 1e5) / 1e5) + "]"; // round digits
     }
     
     
     
 }
+
